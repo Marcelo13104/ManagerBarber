@@ -45,11 +45,11 @@ public class ProfessionalServlet extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
 
-        if ("list".equals(action)) {
-            try {
+        try {
+            if ("list".equals(action)) {
                 List<Professional> professionals = professionalDTO.getAllProfessionals();
                 
-             // Imprimir cada profissional na lista no log (console)
+                // Imprimir cada profissional na lista no log (console)
                 for (Professional professional : professionals) {
                     System.out.println(professional);  // Chama o método toString() do objeto
                 }
@@ -58,12 +58,20 @@ public class ProfessionalServlet extends HttpServlet {
                
                 RequestDispatcher dispatcher = request.getRequestDispatcher("listProfessionals.jsp");
                 dispatcher.forward(request, response);
-            } catch (SQLException e) {
-                e.printStackTrace();
+            
+            } else if ("delete".equals(action)) {
+                String cpf = request.getParameter("cpf");
+
+                professionalDTO.deleteProfessional(cpf);  // Chama o método de exclusão no DAO
+                System.out.println("Profissional com CPF " + cpf + " excluído com sucesso!");
+                
+                // Redireciona para a lista de profissionais após a exclusão
+                response.sendRedirect("professional?action=list");
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
