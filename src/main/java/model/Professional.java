@@ -38,4 +38,13 @@ public class Professional {
     public void setActive(boolean isActive) {
         this.isActive = isActive;
     }
+    
+    @Override
+    public String toString() {
+        return "Professional{" +
+               "cpf='" + cpf + '\'' +
+               ", professionalName='" + professionalName + '\'' +
+               ", isActive=" + isActive +
+               '}';
+    }
 }

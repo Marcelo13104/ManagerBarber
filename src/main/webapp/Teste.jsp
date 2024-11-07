@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.*" %>
 <%@ page import="dto.ConnectionFactory" %> <!-- Substitua pelo pacote correto da ConnectionFactory -->
 
 <html>

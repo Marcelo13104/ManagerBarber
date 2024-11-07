@@ -8,7 +8,7 @@
 <body>
     <div class="form-container">
         <h1>Adicionar Profissional</h1>
-        <form action="professional" method="post">
+        <form action="professional" method="POST">
             <input type="hidden" name="action" value="add">
             <label for="cpf">CPF:</label>
             <input type="text" id="cpf" name="cpf" required>

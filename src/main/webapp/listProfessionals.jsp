@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <html>
 <head>
     <title>Listagem de Profissionais</title>
@@ -13,7 +13,7 @@
                 <th>CPF</th>
                 <th>Nome</th>
                 <th>Ativo</th>
-                <th>AÃ§Ãµes</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -21,7 +21,7 @@
                 <tr>
                     <td>${professional.cpf}</td>
                     <td>${professional.professionalName}</td>
-                    <td>${professional.isActive ? 'Sim' : 'NÃ£o'}</td>
+                    <td>${professional.isActive()}</td>
                     <td>
                         <a href="professional?action=edit&cpf=${professional.cpf}">Editar</a> |
                         <a href="professional?action=delete&cpf=${professional.cpf}">Excluir</a>

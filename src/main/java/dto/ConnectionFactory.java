@@ -11,6 +11,7 @@ public class ConnectionFactory {
     private static final String URL = "jdbc:mysql://localhost:3306/ManagerBarber";
     private static final String USER = "root";
     private static final String PASSWORD = "Elk*1202";
+    
 
     // O método estático getConnection() aplica o Factory Pattern, pois encapsula o processo de criação de uma conexão
     public static Connection getConnection() throws SQLException {
@@ -19,6 +20,7 @@ public class ConnectionFactory {
             return DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException e) {
             // Em caso de falha, o erro é lançado para que o código chamador o trate
+        	 System.out.println("nem pa!");
             throw new SQLException("Erro ao conectar ao banco de dados: " + e.getMessage());
         }
     }

@@ -23,10 +23,7 @@ public class ProfessionalServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         try {
-            // Carregar o driver JDBC explicitamente
-            //Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println("Driver JDBC carregado com sucesso!");
-            // Tenta estabelecer a conexão
+            
             Connection conn = ConnectionFactory.getConnection();
             professionalDTO = new ProfessionalDTO(conn); // Passa a conexão para o DTO
             System.out.println("Conexão com o banco de dados estabelecida com sucesso.");
@@ -51,7 +48,14 @@ public class ProfessionalServlet extends HttpServlet {
         if ("list".equals(action)) {
             try {
                 List<Professional> professionals = professionalDTO.getAllProfessionals();
+                
+             // Imprimir cada profissional na lista no log (console)
+                for (Professional professional : professionals) {
+                    System.out.println(professional);  // Chama o método toString() do objeto
+                }
+                
                 request.setAttribute("professionals", professionals);
+               
                 RequestDispatcher dispatcher = request.getRequestDispatcher("listProfessionals.jsp");
                 dispatcher.forward(request, response);
             } catch (SQLException e) {
@@ -64,7 +68,6 @@ public class ProfessionalServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
-
         if ("add".equals(action)) {
             String cpf = request.getParameter("cpf");
             String name = request.getParameter("name");
@@ -74,7 +77,6 @@ public class ProfessionalServlet extends HttpServlet {
             professional.setCpf(cpf);
             professional.setProfessionalName(name);
             professional.setActive(isActive);
-            System.out.println("objeto criado!");
             try {
                 professionalDTO.saveProfessional(professional);
                 response.sendRedirect("professional?action=list");
