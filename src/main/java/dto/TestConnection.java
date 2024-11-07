@@ -3,19 +3,20 @@ package dto;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+import dto.ConnectionFactory;
 import java.sql.*;
 
 public class TestConnection {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // Informações de conexão
         String url = "jdbc:mysql://localhost:3306/ManagerBarber?useSSL=false&serverTimezone=UTC";
         String user = "root"; // Substitua pelo seu usuário do MySQL
         String password = "Elk*1202"; // Substitua pela sua senha do MySQL
+        
 
         // Tentando estabelecer a conexão e fazer uma consulta
-        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+        try (Connection conn = ConnectionFactory.getConnection()) {
             System.out.println("Conexão bem-sucedida!");
 
             // Criar uma consulta SQL simples para verificar a conexão

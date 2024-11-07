@@ -74,7 +74,7 @@ public class ProfessionalServlet extends HttpServlet {
             professional.setCpf(cpf);
             professional.setProfessionalName(name);
             professional.setActive(isActive);
-
+            System.out.println("objeto criado!");
             try {
                 professionalDTO.saveProfessional(professional);
                 response.sendRedirect("professional?action=list");
