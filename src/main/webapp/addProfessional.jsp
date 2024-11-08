@@ -22,7 +22,7 @@
             
             <button type="submit">Salvar</button>
         </form>
-        <a href="professional?action=list">Voltar à lista de profissionais</a>
+        <a href="selling?action=list">Voltar à página principal</a>
     </div>
 </body>
 </html>

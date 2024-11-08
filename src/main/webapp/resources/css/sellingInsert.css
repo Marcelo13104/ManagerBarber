@@ -1,27 +1,78 @@
-/* Estilos gerais */
+/* Layout geral */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
+    display: flex;
+    height: 100vh;
 }
 
+/* Sidebar */
+.sidebar {
+    background-color: #2c3e50;
+    width: 250px;
+    color: white;
+    padding: 20px;
+    height: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #ecf0f1;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    color: #1abc9c;
+}
+
+/* Main container */
+.main-container {
+    display: flex;
+    flex: 1;
+}
+
+/* Conteúdo principal */
+.content-container {
+    flex: 1;
+    margin-left: 250px;
+    padding: 20px;
+}
+
+/* Formulário */
 .form-container {
     background-color: #ffffff;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
     background: linear-gradient(145deg, #f0f0f5, #e0e0e5);
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1), -10px -10px 20px rgba(255, 255, 255, 0.7);
 }
 
-/* Título */
 h1 {
     color: #333;
     font-size: 24px;
@@ -42,7 +93,7 @@ label {
 }
 
 input[type="text"],
-input[type="checkbox"],
+select,
 button {
     width: 100%;
     padding: 12px;
@@ -57,18 +108,11 @@ button {
 
 /* Foco nos campos de input */
 input[type="text"]:focus,
-input[type="checkbox"]:focus,
+select:focus,
 button:focus {
     outline: none;
     border-color: #4CAF50;
     background-color: #e8f5e9;
-}
-
-/* Estilo do checkbox */
-input[type="checkbox"] {
-    width: auto;
-    margin-right: 10px;
-    margin-bottom: 20px;
 }
 
 /* Botões */
@@ -85,6 +129,11 @@ button:hover {
     background-color: #45a049;
 }
 
+/* Estilo do campo de input para o total */
+#total {
+    font-weight: bold;
+}
+
 /* Link */
 a {
     display: block;
@@ -95,22 +144,4 @@ a {
 
 a:hover {
     color: #45a049;
-}
-
-/* Ajuste no input do CPF (formatação se necessário) */
-#cpf {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    transition: all 0.3s ease-in-out;
-}
-
-#cpf:focus {
-    outline: none;
-    border-color: #4CAF50;
-    background-color: #e8f5e9;
 }

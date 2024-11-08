@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Professional;
+import utils.PopupUtils;
+
 import java.io.*;
 import java.util.List;
 import java.sql.Connection;
@@ -49,21 +51,29 @@ public class ProfessionalServlet extends HttpServlet {
             if ("list".equals(action)) {
                 List<Professional> professionals = professionalDTO.getAllProfessionals();
                 
-                // Imprimir cada profissional na lista no log (console)
+                /* Imprimir cada profissional na lista no log (console)
                 for (Professional professional : professionals) {
                     System.out.println(professional);  // Chama o método toString() do objeto
-                }
+                }*/
                 
                 request.setAttribute("professionals", professionals);
                
                 RequestDispatcher dispatcher = request.getRequestDispatcher("listProfessionals.jsp");
                 dispatcher.forward(request, response);
             
-            } else if ("delete".equals(action)) {
+            } else if ("edit".equals(action)) {
                 String cpf = request.getParameter("cpf");
-
-                professionalDTO.deleteProfessional(cpf);  // Chama o método de exclusão no DAO
-                System.out.println("Profissional com CPF " + cpf + " excluído com sucesso!");
+                String name = request.getParameter("professionalName");
+                boolean isActive = "on".equals(request.getParameter("isActive"));
+                
+                Professional professional = new Professional();
+                professional.setCpf(cpf);
+                professional.setProfessionalName(name);
+                professional.setActive(isActive);
+                System.out.println(professional.toString());
+                
+                professionalDTO.updateProfessional(professional);  // Chama o método de exclusão no DAO
+                PopupUtils.setPopupMessage(request, "Aviso", "Esta é uma mensagem de aviso.", "info");
                 
                 // Redireciona para a lista de profissionais após a exclusão
                 response.sendRedirect("professional?action=list");

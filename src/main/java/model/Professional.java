@@ -1,5 +1,7 @@
 package model;
 
+import utils.FormatterUtils;
+
 public class Professional {
     private int professionalId;
     private String cpf;
@@ -17,6 +19,10 @@ public class Professional {
 
     public String getCpf() {
         return cpf;
+    }
+    
+    public String getCpfFormater() {
+        return FormatterUtils.formatCPF(getCpf());
     }
 
     public void setCpf(String cpf) {
