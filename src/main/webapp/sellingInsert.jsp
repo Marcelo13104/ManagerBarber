@@ -8,10 +8,10 @@
     <script>
         function formatCurrency(input) {
             let value = input.value;
-            value = value.replace(/\D/g, ''); // Remove tudo o que não for número
+            value = value.replace(/\D/g, ''); // Remove tudo o que nao for numero
             value = value.replace(/(\d)(\d{8})$/, '$1.$2'); // Adiciona ponto para milhar
             value = value.replace(/(\d)(\d{5})$/, '$1.$2'); // Adiciona ponto para milhar
-            value = value.replace(/(\d)(\d{2})$/, '$1,$2'); // Adiciona vírgula
+            value = value.replace(/(\d)(\d{2})$/, '$1,$2'); // Adiciona virgula
             input.value = 'R$ ' + value;
         }
     </script>
@@ -24,8 +24,8 @@
             <ul>
                 <li><a href="addProfessional.jsp">Adicionar Profissional</a></li>
                 <li><a href="professional?action=list">Profissionais</a></li>
-                <!--  <li><a href="service?action=list">Serviços</a></li> -->
-                <!-- <li><a href="paymentMethod?action=list">Métodos de Pagamento</a></li> -->
+                <!--  <li><a href="service?action=list">Servicos</a></li> -->
+                <!-- <li><a href="paymentMethod?action=list">Metodos de Pagamento</a></li> -->
                 <!-- <li><a href="biggestSellerMark?action=list">Maior Vendedor</a></li>  -->
             </ul>
         </div>
@@ -35,7 +35,7 @@
             <div class="form-container">
                 <h1>Inserir Venda</h1>
 
-                <!-- Formulário de Inserção de Venda -->
+                <!-- Formulario de Insercao de Venda -->
                 <form action="selling?action=add" method="POST">
                 	<div>
 	                	<label for="sellingDate">Data:</label>
@@ -52,7 +52,7 @@
                     </div>
 
                     <div>
-                        <label for="service">Selecione o Serviço:</label>
+                        <label for="service">Selecione o Serviï¿½o:</label>
                         <select name="serviceName" id="serviceName">
                             <c:forEach var="service" items="${services}">
                                 <option value="${service.serviceName}">${service.serviceName}</option>
@@ -61,7 +61,7 @@
                     </div>
 
                     <div>
-                        <label for="paymentName">Selecione o Método de Pagamento:</label>
+                        <label for="paymentName">Selecione o Mï¿½todo de Pagamento:</label>
                         <select name="paymentName" id="paymentName">
                             <c:forEach var="paymentMethod" items="${paymentMethods}">
                                 <option value="${paymentMethod.paymentName}">${paymentMethod.paymentName}</option>
