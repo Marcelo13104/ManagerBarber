@@ -77,7 +77,17 @@ public class ProfessionalServlet extends HttpServlet {
                 
                 // Redireciona para a lista de profissionais após a exclusão
                 response.sendRedirect("professional?action=list");
+            }else if ("delete".equals(action)) {
+                String cpf = request.getParameter("cpf");
+                
+                
+                professionalDTO.deleteProfessional(cpf);  // Chama o método de exclusão no DAO
+                PopupUtils.setPopupMessage(request, "Aviso", "Esta é uma mensagem de aviso.", "info");
+                
+                // Redireciona para a lista de profissionais após a exclusão
+                response.sendRedirect("professional?action=list");
             }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }

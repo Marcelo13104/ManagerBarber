@@ -92,9 +92,10 @@ label {
     margin-bottom: 8px;
 }
 
-input[type="text"],
+input,
 select,
-button {
+button,
+input[type="date"]:focus {
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
@@ -107,12 +108,26 @@ button {
 }
 
 /* Foco nos campos de input */
-input[type="text"]:focus,
+input:focus,
 select:focus,
-button:focus {
+button:focus,
+input[type="date"]:focus{
     outline: none;
     border-color: #4CAF50;
     background-color: #e8f5e9;
+}
+
+input[type="date"] {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px;
+    width: 100%;
+}
+
+input[type="date"]:focus {
+    border-color: #4CAF50;  /* Cor da borda ao focar */
+    background-color: #e8f5e9;  /* Cor de fundo ao focar */
+    outline: none; /* Remove o outline padrão */
 }
 
 /* Botões */

@@ -24,9 +24,9 @@
             <ul>
                 <li><a href="addProfessional.jsp">Adicionar Profissional</a></li>
                 <li><a href="professional?action=list">Profissionais</a></li>
-                <li><a href="service?action=list">Serviços</a></li>
-                <li><a href="paymentMethod?action=list">Métodos de Pagamento</a></li>
-                <li><a href="biggestSellerMark?action=list">Maior Vendedor</a></li>
+                <!--  <li><a href="service?action=list">Serviços</a></li> -->
+                <!-- <li><a href="paymentMethod?action=list">Métodos de Pagamento</a></li> -->
+                <!-- <li><a href="biggestSellerMark?action=list">Maior Vendedor</a></li>  -->
             </ul>
         </div>
 
@@ -37,8 +37,13 @@
 
                 <!-- Formulário de Inserção de Venda -->
                 <form action="selling?action=add" method="POST">
+                	<div>
+	                	<label for="sellingDate">Data:</label>
+	    				<input type="date" name="sellingDate" id="sellingDate" required>
+                	</div>
+                	
                     <div>
-                        <label for="cpf">Selecione o Profissional:</label>
+                        <label for="professionalName">Selecione o Profissional:</label>
                         <select name="cpf" id="cpf">
                             <c:forEach var="professional" items="${professionals}">
                                 <option value="${professional.cpf}">${professional.professionalName}</option>
@@ -47,8 +52,8 @@
                     </div>
 
                     <div>
-                        <label for="serviceId">Selecione o Serviço:</label>
-                        <select name="serviceId" id="serviceId">
+                        <label for="service">Selecione o Serviço:</label>
+                        <select name="serviceName" id="serviceName">
                             <c:forEach var="service" items="${services}">
                                 <option value="${service.serviceName}">${service.serviceName}</option>
                             </c:forEach>

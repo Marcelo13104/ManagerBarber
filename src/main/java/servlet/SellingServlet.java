@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import dto.ConnectionFactory;
+import dto.PaymentMethodDTO;
 import dto.ProfessionalDTO;
 import dto.SellingDTO;
 import dto.ServiceDTO;
@@ -16,6 +18,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.PaymentMethod;
 import model.Professional;
 import model.SellingModel;
 import model.Service;
@@ -25,6 +28,7 @@ public class SellingServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     ProfessionalDTO professionalDTO;
     ServiceDTO serviceDTO;
+    PaymentMethodDTO paymentMethodDTO;
     
     @Override
     public void init() throws ServletException {
@@ -33,6 +37,7 @@ public class SellingServlet extends HttpServlet {
             Connection conn = ConnectionFactory.getConnection();
             professionalDTO = new ProfessionalDTO(conn); // Passa a conexão para o DTO
             serviceDTO = new ServiceDTO(conn);
+            paymentMethodDTO = new PaymentMethodDTO(conn);
             System.out.println("Conexão com o banco de dados estabelecida com sucesso.");
 
         } catch (SQLException e) {
@@ -54,25 +59,12 @@ public class SellingServlet extends HttpServlet {
 	            // Carregar profissionais e serviços
 	            List<Professional> professionals = professionalDTO.getAllProfessionals();
 	            List<Service> services = serviceDTO.getAllServices();  // Aqui você carrega os serviços
-	            
-	         // Criar listas contendo apenas os nomes
-	            List<String> professionalNames = new ArrayList<>();
-	            for (Professional professional : professionals) {
-	                professionalNames.add(professional.getProfessionalName());
-	            }
-	
-	            List<String> serviceNames = new ArrayList<>();
-	            for (Service service : services) {
-	                serviceNames.add(service.getServiceName());
-	            }
-	            
-	            // Imprimir as listas no console
-	            System.out.println("Profissionais: " + professionalNames.toString());
-	            System.out.println("Serviços: " + serviceNames.toString());
+	            List<PaymentMethod> paymentMethods = paymentMethodDTO.getAllPaymentMethods();
 	            
 	            // Passar os dados como atributos para o JSP
 	            request.setAttribute("professionals", professionals);
-	            request.setAttribute("services", services);  // Passando a lista de serviços
+	            request.setAttribute("services", services); 
+	            request.setAttribute("paymentMethods", paymentMethods);// Passando a lista de serviços
 	        }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -83,15 +75,23 @@ public class SellingServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Recupera os parâmetros do formulário
+    	LocalDate sellingDate = LocalDate.parse(request.getParameter("sellingDate"));
         String cpf = request.getParameter("cpf");
-        int serviceId = Integer.parseInt(request.getParameter("serviceId"));
+        String serviceName = request.getParameter("serviceName");
         String paymentName = request.getParameter("paymentName");
         double total = Double.parseDouble(request.getParameter("total").replace("R$ ", "").replace(",", ".").trim());
-
+        
+     // Imprime os valores para verificação
+        System.out.println("Data de venda: " + sellingDate);
+        System.out.println("CPF: " + cpf);
+        System.out.println("Nome do Serviço: " + serviceName);
+        System.out.println("Nome do Método de Pagamento: " + paymentName);
+        System.out.println("Total: " + total);
         // Cria o DTO
         SellingDTO sellingDTO = new SellingDTO();
+        sellingDTO.setSellingDate(sellingDate);
         sellingDTO.setCpf(cpf);
-        sellingDTO.setServiceId(serviceId);
+        sellingDTO.setServiceName(serviceName);
         sellingDTO.setPaymentName(paymentName);
         sellingDTO.setTotal(total);
 

@@ -25,18 +25,18 @@
         <td>
             <select name="isActive">
                 <option value="true" ${professional.isActive() ? 'selected' : ''}>Ativo</option>
-                <option value="false" ${!professional.isActive() ? 'selected' : ''}>Inativo</option>
+                <option value="false" ${professional.isActive() ? 'selected' : ''}>Inativo</option>
             </select>
         </td>
         <td>
-            <a href="professional?action=edit&cpf=${professional.cpf}&professionalName=${professional.professionalName}">Editar</a>
-
+            <a href="professional?action=edit&cpf=${professional.cpf}&professionalName=${professional.professionalName}">Editar</a> |
+            <a href="professional?action=delete&cpf=${professional.cpf}">Excluir</a>
         </td>
     </tr>
 </c:forEach>
         </tbody>
     </table>
     <br>
-    <a href="sellingInsert.jsp">Voltar à página principal</a>
+    <a href="selling?action=list">Voltar à página principal</a>
 </body>
 </html>

@@ -1,9 +1,12 @@
 package dto;
 
+import java.time.LocalDate;
+
 //SellingDTO.java
 public class SellingDTO {
+ private LocalDate sellingDate;
  private String cpf;
- private int serviceId;
+ private String serviceName;
  private String paymentName;
  private double total;
 
@@ -16,12 +19,12 @@ public class SellingDTO {
      this.cpf = cpf;
  }
 
- public int getServiceId() {
-     return serviceId;
+ public String getServiceName() {
+     return serviceName;
  }
-
- public void setServiceId(int serviceId) {
-     this.serviceId = serviceId;
+ 
+ public void setServiceName(String serviceName) {
+     this.serviceName = serviceName;
  }
 
  public String getPaymentName() {
@@ -38,5 +41,12 @@ public class SellingDTO {
 
  public void setTotal(double total) {
      this.total = total;
+ }
+ public LocalDate getSellingDate() {
+     return sellingDate;
+ }
+
+ public void setSellingDate(LocalDate sellingDate) {
+     this.sellingDate = sellingDate;
  }
 }
