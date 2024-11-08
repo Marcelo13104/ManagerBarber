@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.PaymentMethod;
 import model.Professional;
-import model.SellingModel;
+import model.Selling;
 import model.Service;
 
 @WebServlet("/selling")
@@ -88,19 +88,18 @@ public class SellingServlet extends HttpServlet {
         System.out.println("Nome do Método de Pagamento: " + paymentName);
         System.out.println("Total: " + total);
         // Cria o DTO
-        SellingDTO sellingDTO = new SellingDTO();
-        sellingDTO.setSellingDate(sellingDate);
-        sellingDTO.setCpf(cpf);
-        sellingDTO.setServiceName(serviceName);
-        sellingDTO.setPaymentName(paymentName);
-        sellingDTO.setTotal(total);
+        Selling selling = new Selling();
+        selling.setSellingDate(sellingDate);
+        selling.setCpf(cpf);
+        selling.setPaymentName(paymentName);
+        selling.setTotal(total);
 
         // Conectar ao banco de dados e inserir
         Connection connection = null;
         try {
             connection = ConnectionFactory.getConnection();// Ajuste com suas credenciais
-            SellingModel sellingModel = new SellingModel(connection);
-            if (sellingModel.insertSale(sellingDTO)) {
+            SellingDTO sellingDTO = new SellingDTO(connection);
+            if (sellingDTO.insertSale(selling)) {
                 response.sendRedirect("selling?action=list");
             } else {
                 response.getWriter().println("Erro ao inserir venda.");

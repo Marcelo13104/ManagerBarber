@@ -52,7 +52,7 @@
                     </div>
 
                     <div>
-                        <label for="service">Selecione o Serviï¿½o:</label>
+                        <label for="service">Selecione o Serviço:</label>
                         <select name="serviceName" id="serviceName">
                             <c:forEach var="service" items="${services}">
                                 <option value="${service.serviceName}">${service.serviceName}</option>
@@ -61,7 +61,7 @@
                     </div>
 
                     <div>
-                        <label for="paymentName">Selecione o Mï¿½todo de Pagamento:</label>
+                        <label for="paymentName">Selecione o Metodo de Pagamento:</label>
                         <select name="paymentName" id="paymentName">
                             <c:forEach var="paymentMethod" items="${paymentMethods}">
                                 <option value="${paymentMethod.paymentName}">${paymentMethod.paymentName}</option>

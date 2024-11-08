@@ -1,11 +1,10 @@
-package dto;
+package model;
 
 import java.time.LocalDate;
 
 public class Selling {
     private LocalDate sellingDate;
     private String cpf;
-    private String serviceName;
     private String paymentName;
     private double total;
 
@@ -18,13 +17,6 @@ public class Selling {
         this.cpf = cpf;
     }
 
-    public String getServiceName() {
-        return serviceName;
-    }
-
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
-    }
 
     public String getPaymentName() {
         return paymentName;

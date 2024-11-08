@@ -14,7 +14,7 @@
                 <th>CPF</th>
                 <th>Nome</th>
                 <th>Ativo</th>
-                <th>Aï¿½ï¿½es</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -37,6 +37,6 @@
         </tbody>
     </table>
     <br>
-    <a href="professional?action=list">Voltar Ã  pÃ¡gina principal</a>
+    <a href="selling?action=list">Voltar à pagina principal</a>
 </body>
 </html>
